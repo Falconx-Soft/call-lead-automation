@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block head %}
+        <script type="text/javascript">
+                (function () {
+                        var tf = document.createElement('script');
+                        tf.type = 'text/javascript'; tf.async = true;
+                        tf.src = ("https:" == document.location.protocol ? 'https' : 'http') + "://api.trustedform.com/trustedform.js?field=xxTrustedFormCertUrl&ping_field=xxTrustedFormPingUrl&sandbox=true&l=" + new Date().getTime() + Math.random();
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tf, s);
+                })();
+        </script>
+        <noscript>
+                <img src="https://api.trustedform.com/ns.gif" />
+        </noscript>
+{% endblock %}
+
+
+
+{% block content %}
+<h1>Home</h1>
+<h3>Info</h3>
+
+<form method='post' action="{% url 'add_to_crm' %}">
+        {% csrf_token %}
+        <input type="hidden" name="xxTrustedFormCertUrl" id="xxTrustedFormCertUrl_0" value="">
+        <input type="hidden" name="xxTrustedFormPingUrl" id="xxTrustedFormPingUrl_0" value="">
+        <button type="submit">Confirm</button>
+</form>
+
+<form method='post' class="form-validate is-alter" autocomplete="off">
+        {% csrf_token %}
+
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">first_name</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="text"
+                                class="form-control form-control-lg" name="first_name" id="email-address"
+                                placeholder="Enter your First name" value="{{request.user.first_name}}"></div>
+        </div>
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">last_name</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="text"
+                                class="form-control form-control-lg" name="last_name" id="email-address"
+                                placeholder="Enter your First name" value="{{request.user.last_name}}"></div>
+        </div>
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">phone_number</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="text"
+                                class="form-control form-control-lg" name="phone_number" id="email-address"
+                                placeholder="Enter your First name" value="{{request.user.phone_number}}"></div>
+        </div>
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">total_debt_amount</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="text"
+                                class="form-control form-control-lg" name="total_debt_amount" id="email-address"
+                                placeholder="Enter your First name" value="{{request.user.total_debt_amount}}"></div>
+        </div>
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">zip_code</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="text"
+                                class="form-control form-control-lg" name="zip_code" id="email-address"
+                                placeholder="Enter your First name" value="{{request.user.zip_code}}"></div>
+        </div>
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">state</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="text"
+                                class="form-control form-control-lg" name="state" id="email-address"
+                                placeholder="Enter your First name" value="{{request.user.state}}"></div>
+        </div>
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">age</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="text"
+                                class="form-control form-control-lg" name="age" value="{{request.user.age}}"
+                                id="email-address" placeholder="Enter your age"></div>
+        </div>
+        <div class="form-group"><button class="btn btn-lg btn-primary btn-block" type="submit">Update
+                </button></div>
+</form>
+
+<h3>Change password</h3>
+<form method='post' action="{% url 'change_password' %}" class="form-validate is-alter" autocomplete="off">
+        {% csrf_token %}
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">Previous password</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="password"
+                                class="form-control form-control-lg" name="old_password" id="email-address"
+                                placeholder="Previous password"></div>
+        </div>
+
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">New password</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="password"
+                                class="form-control form-control-lg" name="new_password" id="email-address"
+                                placeholder="New password" minlength="8"></div>
+        </div>
+
+        <div class="form-group">
+                <div class="form-label-group"><label class="form-label" for="email-address">Confirm password</label>
+                </div>
+                <div class="form-control-wrap"><input autocomplete="off" type="password"
+                                class="form-control form-control-lg" name="confirm_password" id="email-address"
+                                placeholder="Confirm password" minlength="8"></div>
+        </div>
+
+        <div class="form-group"><button class="btn btn-lg btn-primary btn-block" type="submit">Change Password
+                </button></div>
+</form>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
