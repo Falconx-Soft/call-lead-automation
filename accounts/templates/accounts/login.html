@@ -2,35 +2,48 @@
 {% load static %}
 {% block title %} {{title}} {% endblock %}
 
-{% block content %}
-    <h1>Login</h1>
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+{% endblock %}
 
-    <form method='post' class="form-validate is-alter" autocomplete="off">
-        {% csrf_token %}
-        <div class="form-group">
-            <div class="form-label-group"><label class="form-label"
-                    for="email-address">Email</label>
+{% block content %}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url('{% static 'images/bg-01.jpg' %}');">
+                <span class="login100-form-title-1">
+                    Sign In
+                </span>
             </div>
-            <div class="form-control-wrap"><input autocomplete="off" type="text"
-                    class="form-control form-control-lg" name="email" required id="email-address"
-                    placeholder="Enter your email address"></div>
-        </div>
-        <div class="form-group">
-            <div class="form-label-group"><label class="form-label"
-                    for="password">Password</label>
+
+            {% if msg != "" %}
+                <p class="error-display">{{msg}}</p>
+                {% endif %}
+            <form method='post' class="login100-form validate-form" autocomplete="off">
+                {% csrf_token %}
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
+                    <span class="label-input100">Email</span>
+                    <input class="input100" type="email" name="email" placeholder="Enter email" required>
+                    <span class="focus-input100"></span>
                 </div>
-            <div class="form-control-wrap"><a tabindex="-1" href="#"
-                    class="form-icon form-icon-right passcode-switch lg"
-                    data-target="password"><em
-                        class="passcode-icon icon-show icon ni ni-eye"></em><em
-                        class="passcode-icon icon-hide icon ni ni-eye-off"></em></a><input
-                    autocomplete="new-password" type="password" name="password"
-                    class="form-control form-control-lg" required id="password"
-                    placeholder="Enter your password"></div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                    <span class="label-input100">Password</span>
+                    <input class="input100" type="password" name="password" placeholder="Enter password" required>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="form-group"><button class="btn btn-lg btn-primary btn-block" type="submit">Log
-                in</button></div>
-    </form>
+    </div>
+</div>
 
 {% endblock %}
 

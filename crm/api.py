@@ -64,6 +64,6 @@ def insert_records(token,user,trusted_form_url):
             token_obj = access_token_objs[0]
             token_obj.token = refresh_token
             token_obj.save()
-            insert_records(token_obj.token,user)
+            insert_records(token_obj.token,user,trusted_form_url)
     else:
         return "Error"

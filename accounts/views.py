@@ -22,6 +22,7 @@ def home(request):
 
 @login_required(login_url='login')
 def change_password(request):
+    msg = ''
     if request.method == 'POST':
         print("**************")
         print(request.POST['new_password'])
@@ -34,7 +35,16 @@ def change_password(request):
                 user.save()
                 logout(request)
                 return redirect('login')
-    return redirect('home')
+            else:
+                print("**************")
+                msg = "New password mismatch"
+        else:
+            print("**************")
+            msg = "Previous password is incorrect"
+    context = {
+        'msg': msg
+    }
+    return render(request,'accounts/change_password.html',context)
 
 def loginUser(request):
     if request.user.is_authenticated:
@@ -59,6 +69,10 @@ def loginUser(request):
         'title':'Login'
     }
     return render(request,'accounts/login.html',context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
 
 def web_hook(request):
     email               = request.GET['email']

@@ -1,0 +1,7 @@
+.error-display{
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 20px;
+    margin-top: 10px;
+}
