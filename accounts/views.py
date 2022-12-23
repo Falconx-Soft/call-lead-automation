@@ -106,17 +106,5 @@ def web_hook(request):
     send_mail(subject, message, email_from, recipient_list)
 
     
-    return JsonResponse({
-                    'status':"success",
-                    'email':email,
-                    'first_name':first_name,
-                    'last_name':last_name,
-                    'phone_number':phone_number,
-                    'total_debt_amount':total_debt_amount,
-                    'zip_code':zip_code,
-                    'state':state,
-                    'age':age
-                })
+    return redirect('login')
     
-
-# http://localhost:8000/?email=ibrahim.murad009@gmail.com@gmail.com&first_name=ibrahim&last_name=murad&phone_number=03344227779&total_debt_amount=50&zip_code=9999&state=Asia&age=25
