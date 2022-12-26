@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .models import Account
+from .models import Account, Admin_Emails
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate, logout
@@ -99,10 +99,15 @@ def web_hook(request):
 
     userObj.save()
 
+    admin_email_list = []
+
+    for user_obj in Admin_Emails.objects.all():
+        admin_email_list.append(user_obj.email)
+
     subject = 'Welcome'
     message = 'Link: http://'+request.META['HTTP_HOST']+'/\nEmail: '+email+'\nPassword: '+str(password)
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email]
+    recipient_list = admin_email_list
     send_mail(subject, message, email_from, recipient_list)
 
     
