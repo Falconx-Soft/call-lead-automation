@@ -147,15 +147,10 @@ def info(request, uidb64, token):
                 user.is_active = True
                 user.save()
 
-                admin_email_list = []
-
-                for user_obj in Admin_Emails.objects.all():
-                    admin_email_list.append(user_obj.email)
-
                 subject = 'Welcome'
                 message = 'Link: http://'+request.META['HTTP_HOST']+'/\nEmail: '+user.email+'\nPassword: '+str(password)
                 email_from = settings.EMAIL_HOST_USER
-                recipient_list = admin_email_list
+                recipient_list = [user.email,]
                 send_mail(subject, message, email_from, recipient_list)
 
                 return redirect('login')
