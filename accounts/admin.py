@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Account, Admin_Emails
+from .models import Account, Admin_Emails, User_offers
 
 
 
@@ -16,3 +16,13 @@ from .models import Account, Admin_Emails
 
 admin.site.register(Account)
 admin.site.register(Admin_Emails)
+
+
+class User_offersAdmin(admin.ModelAdmin):
+	list_display = ('name', 'url_text','url')
+	search_fields = ('name',)
+
+	filter_horizontal = ()
+	list_filter = ()
+	fieldsets = ()
+admin.site.register(User_offers,User_offersAdmin)

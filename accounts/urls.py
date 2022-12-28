@@ -11,6 +11,7 @@ urlpatterns = [
       path('web-hook/', views.web_hook, name="web_hook"),
       path('change_password/', views.change_password, name="change_password"),
       path('logout/', views.logoutUser, name="logout"),
+      path('offers/', views.offers, name="offers"),
 ]
 
 

@@ -70,3 +70,16 @@ class Admin_Emails(models.Model):
 
     def __str__(self) :
         return str(self.email)
+
+class User_offers(models.Model):
+    name 					= models.CharField(max_length=30)
+    url_text                = models.TextField()
+    url                     = models.URLField()
+    image                   = models.ImageField(upload_to='offers',default='default.png')
+
+    class Meta:
+        verbose_name = ("User offers")
+        verbose_name_plural = ("User offers")
+
+    def __str__(self):
+        return str(self.name)

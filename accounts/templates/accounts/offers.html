@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100" style="width: 100%; max-width: 1110px;">
+            <div class="login100-form-title" style="background-image: url('{% static 'images/bg-01.jpg' %}');">
+                <span class="login100-form-title-1">
+                    Offers
+                </span>
+            </div>
+            <div class="login100-form validate-form" style="padding: 43px 42px 93px 42px">
+                {% for offer in offers %}
+                    <div class="offer-card">
+                        <img class="offer-img" src="{{offer.image.url}}" alt="offer image">
+                        <div class="offer-details">
+                            <h1><b>{{offer.name}}</b></h1>
+                            <a href="{{offer.url}}" class="offer-url" target="_blank">{{offer.url_text}}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

@@ -44,3 +44,27 @@ text-decoration: none;
 color: blue;
 margin-top: 8px;
 }
+
+.offer-card{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 20px;
+    height: 200px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 20px;
+}
+
+.offer-img{
+    width: 300px;
+    height: 100%;
+}
+
+.offer-details{
+    padding: 10px;
+}
+
+.offer-url{
+    margin-top: 10px;
+    font-size: 16px;
+}

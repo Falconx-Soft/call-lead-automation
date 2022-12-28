@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .models import Account, Admin_Emails
+from .models import Account, Admin_Emails, User_offers
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate, logout
@@ -168,3 +168,13 @@ def info(request, uidb64, token):
         return render(request,'accounts/confirm_info.html',context)
     else:
         return HttpResponse('There is a problem with the URL')
+
+@login_required(login_url='login')
+def offers(request):
+    user_offers_obj = User_offers.objects.all()
+
+    context = {
+        'offers':user_offers_obj
+    }
+
+    return render(request, 'accounts/offers.html',context)
