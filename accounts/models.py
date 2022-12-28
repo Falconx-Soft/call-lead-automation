@@ -31,7 +31,7 @@ class Account(AbstractBaseUser):
     first_name 				= models.CharField(max_length=30, null=True)
     last_name 				= models.CharField(max_length=30,null=True)
     phone_number            = models.CharField(max_length=30,null=True)
-    total_debt_amount       = models.FloatField(null=True)
+    total_debt_amount       = models.CharField(max_length=50,null=True)
     zip_code                = models.CharField(max_length=30,null=True)
     state                   = models.CharField(max_length=30,null=True)
     age                     = models.IntegerField(null=True)

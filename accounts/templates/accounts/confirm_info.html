@@ -5,6 +5,7 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
 {% endblock %}
 
 {% block head %}
@@ -34,8 +35,7 @@
                                         Information
                                 </span>
                         </div>
-
-
+                        
                         <form method='post' class="login100-form validate-form" autocomplete="off">
                                 {% csrf_token %}
                                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
@@ -59,6 +59,18 @@
                                                 required>
                                         <span class="focus-input100"></span>
                                 </div>
+
+                                {% if user.total_debt_amount == "" %}
+                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required"
+                                        style="border: none;">
+                                        <span class="label-input100">Total Debt</span>
+                                        <select name="total_debt_amount" style="margin-top: 13px;" required>
+                                                <option value="Less than $9,000">Less than $9,000</option>
+                                                <option value="Greater than $10,000">Greater than $10,000</option>
+                                                <option value="Greater than $15,000">Greater than $15,000</option>
+                                        </select>
+                                </div>
+                                {% else %}
                                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                                         <span class="label-input100">Total Debt</span>
                                         <input class="input100" type="text" name="total_debt_amount"
@@ -66,6 +78,8 @@
                                                 required>
                                         <span class="focus-input100"></span>
                                 </div>
+                                {% endif %}
+
                                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                                         <span class="label-input100">Zip Code</span>
                                         <input class="input100" type="text" name="zip_code"
@@ -92,6 +106,11 @@
                                         <button class="login100-form-btn" type="submit" style="width: 100%;">
                                                 Confirm Info
                                         </button>
+                                </div>
+
+                                <div class="links-div">
+                                        <a href="{% url 'terms_and_conditions' %}">Terms and conditions</a>
+                                        <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
                                 </div>
                         </form>
                 </div>
