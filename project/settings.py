@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'silent_hook',
     'crm',
+    'terms_and_privacy',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

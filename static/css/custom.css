@@ -5,3 +5,16 @@
     font-size: 20px;
     margin-top: 10px;
 }
+
+.links-div{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.links-div > a{
+    text-decoration: none;
+}

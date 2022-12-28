@@ -5,6 +5,7 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
 {% endblock %}
 
 {% block head %}
@@ -66,6 +67,11 @@
                         style="width: 100%; margin-top: 20px; text-decoration: none;">
                         Logout
                     </a>
+                </div>
+
+                <div class="links-div">
+                    <a href="{% url 'terms_and_conditions' %}">Terms and conditions</a>
+                    <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
                 </div>
             </div>
         </div>
