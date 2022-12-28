@@ -90,8 +90,8 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.mysql',  
 #         'NAME': 'defaultdb',  
 #         'USER': 'doadmin',  
-#         'PASSWORD': 'AVNS_a9S-656nMS30rwAehfC',  
-#         'HOST': 'db-mysql-nyc1-26146-do-user-13104083-0.b.db.ondigitalocean.com',  
+#         'PASSWORD': 'AVNS_KfW4T8RWp3kCc-IOTe3',  
+#         'HOST': 'leaddb-do-user-13104083-0.b.db.ondigitalocean.com',  
 #         'PORT': '25060',  
 #         'OPTIONS': {  
 #             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  

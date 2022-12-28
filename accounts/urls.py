@@ -6,6 +6,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
       path('', views.home, name="home"),
+      path('info/<uidb64>/<token>/',views.info, name="info"),
       path('login/', views.loginUser, name="login"),
       path('web-hook/', views.web_hook, name="web_hook"),
       path('change_password/', views.change_password, name="change_password"),

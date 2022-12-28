@@ -8,17 +8,7 @@
 {% endblock %}
 
 {% block head %}
-<script type="text/javascript">
-        (function () {
-                var tf = document.createElement('script');
-                tf.type = 'text/javascript'; tf.async = true;
-                tf.src = ("https:" == document.location.protocol ? 'https' : 'http') + "://api.trustedform.com/trustedform.js?field=xxTrustedFormCertUrl&ping_field=xxTrustedFormPingUrl&sandbox=true&l=" + new Date().getTime() + Math.random();
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tf, s);
-        })();
-</script>
-<noscript>
-        <img src="https://api.trustedform.com/ns.gif" />
-</noscript>
+
 {% endblock %}
 
 
@@ -26,108 +16,61 @@
 {% block content %}
 
 <div class="limiter">
-        <div class="container-login100">
-                <div class="wrap-login100">
-                        <div class="login100-form-title"
-                                style="background-image: url('{% static 'images/bg-01.jpg' %}');">
-                                <span class="login100-form-title-1">
-                                        Information
-                                </span>
-                        </div>
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url('{% static 'images/bg-01.jpg' %}');">
+                <span class="login100-form-title-1">
+                    Information
+                </span>
+            </div>
 
-
-                        <form method='post' class="login100-form validate-form" autocomplete="off">
-                                {% csrf_token %}
-                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                                        <span class="label-input100">First Name</span>
-                                        <input class="input100" type="text" name="first_name"
-                                                placeholder="Enter your First name" value="{{request.user.first_name}}"
-                                                required>
-                                        <span class="focus-input100"></span>
-                                </div>
-                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                                        <span class="label-input100">Last Name</span>
-                                        <input class="input100" type="text" class="form-control form-control-lg"
-                                                name="last_name" placeholder="Enter your First name"
-                                                value="{{request.user.last_name}}" required>
-                                        <span class="focus-input100"></span>
-                                </div>
-                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                                        <span class="label-input100">Phone Number</span>
-                                        <input class="input100" type="text" name="phone_number"
-                                                placeholder="Enter your First name"
-                                                value="{{request.user.phone_number}}" required>
-                                        <span class="focus-input100"></span>
-                                </div>
-                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                                        <span class="label-input100">Total Debt</span>
-                                        <input class="input100" type="text" name="total_debt_amount"
-                                                placeholder="Enter your First name"
-                                                value="{{request.user.total_debt_amount}}" required>
-                                        <span class="focus-input100"></span>
-                                </div>
-                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                                        <span class="label-input100">Zip Code</span>
-                                        <input class="input100" type="text" name="zip_code"
-                                                placeholder="Enter your First name" value="{{request.user.zip_code}}"
-                                                required>
-                                        <span class="focus-input100"></span>
-                                </div>
-                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                                        <span class="label-input100">State</span>
-                                        <input class="input100" type="text" name="state"
-                                                placeholder="Enter your First name" value="{{request.user.state}}"
-                                                required>
-                                        <span class="focus-input100"></span>
-                                </div>
-                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                                        <span class="label-input100">Age</span>
-                                        <input class="input100" type="text" name="age" value="{{request.user.age}}"
-                                                placeholder="Enter your age" required>
-                                        <span class="focus-input100"></span>
-                                </div>
-
-                                <div class="container-login100-form-btn">
-                                        <button class="login100-form-btn" style="width: 100%;">
-                                                Update Info
-                                        </button>
-                                </div>
-
-                                <div class="container-login100-form-btn">
-                                        <a href="{% url 'change_password' %}" class="login100-form-btn"
-                                                style="width: 100%; margin-top: 20px; text-decoration: none;">
-                                                Change Password
-                                        </a>
-                                </div>
-
-                                <div class="container-login100-form-btn">
-                                        <button class="login100-form-btn" type="button"
-                                                style="width: 100%; margin-top: 20px;" onclick="submit_form()">
-                                                Confirm Info
-                                        </button>
-                                </div>
-
-                                <div class="container-login100-form-btn">
-                                        <a href="{% url 'logout' %}" class="login100-form-btn"
-                                                style="width: 100%; margin-top: 20px; text-decoration: none;">
-                                                Logout
-                                        </a>
-                                </div>
-                        </form>
+            <div class="login100-form validate-form">
+                <div class="wrap-input100 validate-input m-b-26">
+                    <span class="label-input100">First Name</span>
+                    <p class="input100" style="margin-top: 13px;">{{user.first_name}}</p>
                 </div>
-        </div>
-</div>
+                <div class="wrap-input100 validate-input m-b-26">
+                    <span class="label-input100">Last Name</span>
+                    <p class="input100" style="margin-top: 13px;">{{user.last_name}}</p>
+                </div>
+                <div class="wrap-input100 validate-input m-b-26">
+                    <span class="label-input100">Phone Number</span>
+                    <p class="input100" style="margin-top: 13px;">{{user.phone_number}}</p>
+                </div>
+                <div class="wrap-input100 validate-input m-b-26">
+                    <span class="label-input100">Total Debt</span>
+                    <p class="input100" style="margin-top: 13px;">{{user.total_debt_amount}}</p>
+                </div>
+                <div class="wrap-input100 validate-input m-b-26">
+                    <span class="label-input100">Zip Code</span>
+                    <p class="input100" style="margin-top: 13px;">{{user.zip_code}}</p>
+                </div>
+                <div class="wrap-input100 validate-input m-b-26">
+                    <span class="label-input100">State</span>
+                    <p class="input100" style="margin-top: 13px;">{{user.state}}</p>
+                </div>
 
-<form method='post' action="{% url 'add_to_crm' %}">
-        {% csrf_token %}
-        <input type="hidden" name="xxTrustedFormCertUrl" id="xxTrustedFormCertUrl_0" value="">
-        <input type="hidden" name="xxTrustedFormPingUrl" id="xxTrustedFormPingUrl_0" value="">
-        <div class="container-login100-form-btn">
-                <button class="login100-form-btn" style="display: none;" id="confirm-submit-btn">
-                        Confirm
-                </button>
+                <div class="wrap-input100 validate-input m-b-26">
+                    <span class="label-input100">Age</span>
+                    <p class="input100" style="margin-top: 13px;">{{user.age}}</p>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <a href="{% url 'change_password' %}" class="login100-form-btn"
+                        style="width: 100%; margin-top: 20px; text-decoration: none;">
+                        Change Password
+                    </a>
+                </div>
+                <div class="container-login100-form-btn">
+                    <a href="{% url 'logout' %}" class="login100-form-btn"
+                        style="width: 100%; margin-top: 20px; text-decoration: none;">
+                        Logout
+                    </a>
+                </div>
+            </div>
         </div>
-</form>
+    </div>
+</div>
 {% endblock %}
 
 {% block js %}

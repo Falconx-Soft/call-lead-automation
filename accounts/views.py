@@ -6,6 +6,12 @@ from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import *
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.http import HttpResponse
+from crm.models import *
+from crm.api import *
 # Create your views here.
 
 @login_required(login_url='login')
@@ -104,8 +110,12 @@ def web_hook(request):
     for user_obj in Admin_Emails.objects.all():
         admin_email_list.append(user_obj.email)
 
-    subject = 'Welcome'
-    message = 'Link: http://'+request.META['HTTP_HOST']+'/\nEmail: '+email+'\nPassword: '+str(password)
+    domain = request.get_host()
+    uid = urlsafe_base64_encode(force_bytes(userObj.pk))
+    token = default_token_generator.make_token(userObj)
+
+    subject = 'New user'
+    message = "Link: "+ "http://"+domain+"/info/"+uid+"/"+token+"/"
     email_from = settings.EMAIL_HOST_USER
     recipient_list = admin_email_list
     send_mail(subject, message, email_from, recipient_list)
@@ -113,3 +123,48 @@ def web_hook(request):
     
     return redirect('login')
     
+def info(request, uidb64, token):
+    try:
+        uid = int(urlsafe_base64_decode(uidb64))
+        user = Account.objects.get(id=uid)
+    except:
+        user = None
+
+    if user is not None and default_token_generator.check_token(user,token):
+        if request.method == 'POST':
+            form = CutomUserCreationForm(request.POST or None, instance=user)
+            if form.is_valid():
+                form.save()
+
+                access_token_objs = access_token.objects.all()
+                token_obj = access_token_objs[0]
+                response = insert_records(token_obj.token, user, request.POST['xxTrustedFormCertUrl'])
+                print(response)
+
+                password = Account.objects.make_random_password()
+
+                user.set_password(password)
+                user.is_active = True
+                user.save()
+
+                admin_email_list = []
+
+                for user_obj in Admin_Emails.objects.all():
+                    admin_email_list.append(user_obj.email)
+
+                subject = 'Welcome'
+                message = 'Link: http://'+request.META['HTTP_HOST']+'/\nEmail: '+user.email+'\nPassword: '+str(password)
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = admin_email_list
+                send_mail(subject, message, email_from, recipient_list)
+
+                return redirect('login')
+
+            else:
+                print(form.errors)
+        context = {
+            'user':user
+        }
+        return render(request,'accounts/confirm_info.html',context)
+    else:
+        return HttpResponse('There is a problem with the URL')
