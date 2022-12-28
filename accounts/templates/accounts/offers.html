@@ -18,15 +18,20 @@
                     Offers
                 </span>
             </div>
+            <div class="back-btn-div">
+                <a href="{% url 'home' %}">
+                    Back
+                </a>
+            </div>
             <div class="login100-form validate-form" style="padding: 43px 42px 93px 42px">
                 {% for offer in offers %}
-                    <div class="offer-card">
-                        <img class="offer-img" src="{{offer.image.url}}" alt="offer image">
-                        <div class="offer-details">
-                            <h1><b>{{offer.name}}</b></h1>
-                            <a href="{{offer.url}}" class="offer-url" target="_blank">{{offer.url_text}}</a>
-                        </div>
+                <div class="offer-card">
+                    <img class="offer-img" src="{{offer.image.url}}" alt="offer image">
+                    <div class="offer-details">
+                        <h1><b>{{offer.name}}</b></h1>
+                        <a href="{{offer.url}}" class="offer-url" target="_blank">{{offer.url_text}}</a>
                     </div>
+                </div>
                 {% endfor %}
             </div>
         </div>

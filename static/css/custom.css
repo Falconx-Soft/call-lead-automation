@@ -45,6 +45,23 @@ color: blue;
 margin-top: 8px;
 }
 
+.back-btn-div{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.back-btn-div > a{
+    width: 100px; 
+    margin-top: 20px; 
+    text-decoration: none;
+    text-align: center;
+    border: solid 1px #57b846;
+    background-color: #57b846;
+    color: white;
+    margin-right: 42px;
+}
+
 .offer-card{
     display: flex;
     width: 100%;
