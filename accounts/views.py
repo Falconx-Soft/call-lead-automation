@@ -114,13 +114,15 @@ def web_hook(request):
     uid = urlsafe_base64_encode(force_bytes(userObj.pk))
     token = default_token_generator.make_token(userObj)
 
+    link = "http://"+domain+"/info/"+uid+"/"+token+"/"
+
     subject = 'New user'
-    message = "Link: "+ "http://"+domain+"/info/"+uid+"/"+token+"/"
+    message = "Link: "+ link
     email_from = settings.EMAIL_HOST_USER
     recipient_list = admin_email_list
     send_mail(subject, message, email_from, recipient_list)
 
-    temp = requests.post('https://hook.us1.make.com/9emticn3exltfd6ws28mxrearlpn2r5p?formlink='+message+'&phone='+phone_number)
+    temp = requests.post('https://hook.us1.make.com/9emticn3exltfd6ws28mxrearlpn2r5p?formlink='+link+'&phone='+phone_number+'&state='+state+'&fname='+first_name+'')
     print(temp.content,"<----------------------Web Hook Response")
     
     return redirect('login')
