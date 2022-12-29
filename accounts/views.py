@@ -120,6 +120,8 @@ def web_hook(request):
     recipient_list = admin_email_list
     send_mail(subject, message, email_from, recipient_list)
 
+    temp = requests.post('https://hook.us1.make.com/9emticn3exltfd6ws28mxrearlpn2r5p?formlink='+message+'&phone='+phone_number)
+    print(temp.content,"<----------------------Web Hook Response")
     
     return redirect('login')
     
