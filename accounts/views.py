@@ -23,8 +23,11 @@ def home(request):
             form.save()
         else:
             print(form.errors)
+    context = {
+        'title':'Home',
+    }
     
-    return render(request,'accounts/home.html')
+    return render(request,'accounts/home.html',context)
 
 @login_required(login_url='login')
 def change_password(request):
@@ -48,7 +51,8 @@ def change_password(request):
             print("**************")
             msg = "Previous password is incorrect"
     context = {
-        'msg': msg
+        'msg': msg,
+        'title':'Change Password',
     }
     return render(request,'accounts/change_password.html',context)
 
@@ -162,7 +166,8 @@ def info(request, uidb64, token):
             else:
                 print(form.errors)
         context = {
-            'user':user
+            'user':user,
+            'title':'Confirm Information',
         }
         return render(request,'accounts/confirm_info.html',context)
     else:
@@ -173,7 +178,8 @@ def offers(request):
     user_offers_obj = User_offers.objects.all()
 
     context = {
-        'offers':user_offers_obj
+        'offers':user_offers_obj,
+        'title':'Offers',
     }
 
     return render(request, 'accounts/offers.html',context)
