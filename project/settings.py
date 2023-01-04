@@ -169,3 +169,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'clientportal@koalafy.net'
 EMAIL_HOST_PASSWORD = 'ijkuzgqmdlvbxuew'
 
+CSRF_TRUSTED_ORIGINS = ['https://koalafy.net/']
+
