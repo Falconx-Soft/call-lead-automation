@@ -30,7 +30,8 @@ def insert_records(token,user,trusted_form_url):
         "Phone": user.phone_number,
         "State": user.state,
         "xxTrustedFormCerUrl": trusted_form_url,
-        "Age": str(user.age)
+        "Age": str(user.age),
+        "Lead_Source": "https://koalafy.net/",
     }
 
     record_list.append(record_object_1)
