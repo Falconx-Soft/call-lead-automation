@@ -18,7 +18,7 @@ urlpatterns = [
 
 # http://localhost:8000/web-hook/?email=ibrahim.murad009@gmail.com&first_name=ibrahim&last_name=murad&phone_number=00000000&total_debt_amount=50&zip_code=9999&state=Asia&age=25
 
-#https://koalafy.net/web-hook/?email=mikeydoo123@yahoo.com&first_name=Jack&last_name=Doe&phone_number=7324916475&total_debt_amount=17500&zip_code=&state=NJ&age=36
+#https://koalafy.net/web-hook/?email=mikeydoo123@yahoo.com&first_name=Jill&last_name=Doe&phone_number=7324916475&total_debt_amount=17500&zip_code=&state=NJ&age=36
 
 
 
