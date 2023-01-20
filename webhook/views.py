@@ -7,9 +7,7 @@ from .models import webhook_data
 
 @csrf_exempt
 def data(request):
-    print("************")
     json_data = json.loads(request.body)
     webhook_data_obj = webhook_data.objects.create(data=json_data)
     webhook_data_obj.save()
-    print(json_data,"<-----")
-    return JsonResponse(json_data)
+    return JsonResponse({'status':200})

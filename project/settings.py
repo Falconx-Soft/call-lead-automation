@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # DATABASES = {  
@@ -101,16 +101,16 @@ DATABASES = {
 #     }  
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'defaultdb', 
-#         'USER': 'doadmin', 
-#         'PASSWORD': 'AVNS_YGVxmh5NhqrMcOz2EZ2',
-#         'HOST': 'lead-db-postgresql-do-user-13104083-0.b.db.ondigitalocean.com', 
-#         'PORT': '25060',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'defaultdb', 
+        'USER': 'doadmin', 
+        'PASSWORD': 'AVNS_DaQeljx51y3L6R9FSol',
+        'HOST': 'db-postgresql-nyc1-49037-do-user-13104083-0.b.db.ondigitalocean.com', 
+        'PORT': '25060',
+    }
+}
 
 
 # Password validation
